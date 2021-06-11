@@ -1,5 +1,6 @@
 const express = require('express');
 const transporter = require('../helpers/transporter');
+const template = require('../templates/feedback/sendtouser');
 
 const router = express.Router();
 
@@ -8,14 +9,14 @@ router.get('/', (req, res) => {
 });
 
 router.get('/sendmail', (req, res) => {
-  transporterDetails = transporter('infozy');
+  transporterDetails = transporter('shaaan');
   const { transporter: mailTransporter, senderEmail } = transporterDetails;
   mailTransporter.sendMail(
     {
       from: senderEmail,
       to: 'tksudharshan@gmail.com',
       subject: 'This is a test email',
-      text: 'Hello there, this is Sudharshan TK',
+      html: template,
     },
     (error) => {
       if (!error) {
