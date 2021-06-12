@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/Infozy-Group/infozy-smtp-server#readme",
   "dependencies": {
-    "cryptojs": "^2.5.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.1.0",

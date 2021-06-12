@@ -1,5 +1,5 @@
 module.exports = (req, res, next) => {
-  const allowedOrigins = process.env.FRONT.split(',');
+  const allowedOrigins = process.env.DOMAINS.split(',');
   if (req.method === 'POST') {
     if (req.headers.origin && allowedOrigins.indexOf(req.headers.origin) > -1) {
       next();
