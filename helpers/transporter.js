@@ -3,26 +3,31 @@ const nodemailer = require('nodemailer');
 const INFOZY_RSA = process.env.RSA_INFOZY;
 const SHAAAN_RSA = process.env.RSA_SHAAAN;
 
-module.exports = (smtp_mail) => {
+module.exports = (domain) => {
   let senderEmail;
   let dkimSignature;
   let domainName;
-  if (smtp_mail) {
-    if (smtp_mail === 'infozy') {
+  let senderString;
+  if (domain) {
+    if (domain === 'infozy.tk') {
       senderEmail = 'support@infozy.tk';
+      senderString = `Infozy - Support<${senderEmail}>`;
       dkimSignature = INFOZY_RSA;
-      domainName = 'infozy.tk';
-    } else if (smtp_mail === 'shaaan') {
+      domainName = domain;
+    } else if (domain === 'shaaan.tk') {
       senderEmail = 'support@shaaan.tk';
+      senderString = `Shan.tk - Support<${senderEmail}>`;
       dkimSignature = SHAAAN_RSA;
-      domainName = 'shaaan.tk';
+      domainName = domain;
     } else {
       senderEmail = 'support@infozy.tk';
+      senderString = `Infozy - Support<${senderEmail}>`;
       dkimSignature = INFOZY_RSA;
       domainName = 'infozy.tk';
     }
   } else {
     senderEmail = 'support@infozy.tk';
+    senderString = `Infozy - Support<${senderEmail}>`;
     dkimSignature = INFOZY_RSA;
     domainName = 'infozy.tk';
   }
@@ -41,5 +46,5 @@ module.exports = (smtp_mail) => {
       privateKey: dkimSignature,
     },
   });
-  return { senderEmail, transporter, domainName };
+  return { senderEmail, senderString, transporter, domainName };
 };

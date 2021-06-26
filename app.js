@@ -14,6 +14,7 @@ app.use(express.json({ limit: '50kb' }));
 app.use(helmet());
 app.use(mongoSanitize());
 app.use(xss());
+// app.use(cors)
 // app.use(checkOrigin);
 // app.use(jwtVerify);
 

@@ -1,29 +1,18 @@
 const mongoose = require('mongoose');
 
-const smtpTokenSchema = {
-  token: {
-    type: String,
-    required: true,
-  },
-  type: {
-    type: String,
-    required: true,
-  },
-  time: {
-    type: Date,
-    required: true,
-    unique: false,
-    default: Date.now(),
-  },
-  domain: {
-    type: String,
-    required: true,
-    unique: false,
-  },
+const smtpEmailSchema = {
   email: {
     type: String,
     required: true,
-    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  domains: {
+    type: String,
+    required: true,
+    unique: false,
   },
 };
 
